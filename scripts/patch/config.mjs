@@ -1099,7 +1099,7 @@ export function patchConfig(config, strict = true) {
 			isStarship: true
 		},
 		concentration: {
-			label: "DND5E.Item.Property.Concentration",
+			label: "SW5E.Item.Property.Concentration",
 			abbreviation: "DND5E.ConcentrationAbbr",
 			icon: "systems/dnd5e/icons/svg/statuses/concentrating.svg",
 			reference: "Compendium.dnd5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.ow58p27ctAnr4VPH",
