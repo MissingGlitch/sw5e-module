@@ -15,6 +15,17 @@ If you wish to manually install the system, you must clone or extract it into th
 
 ## Changelog
 
+### [1.2.6] - 2025-10-31
+
+### Added
+
+- Conditions now have descriptions and images.
+
+### Fixed
+
+- Classes now have additional labels within their details to specify Powercasting and Maneuver progression.
+- Equipments and Weapons now have specific configuration labels for their special Properties.
+
 ### [1.2.5] - 2025-03-03
 
 ### Changed
