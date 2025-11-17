@@ -1123,7 +1123,7 @@ export function patchConfig(config, strict = true) {
 			full: "SW5E.Item.Property.EnhancedFull",
 			type: "Boolean",
 			reference: "SW5E.Item.Property.EnhancedDesc",
-			icon: "systems/sw5e/icons/svg/properties/enhanced.svg",
+			icon: "systems/dnd5e/icons/svg/properties/magical.svg",
 			isPhysical: true
 		},
 		ritual: {
@@ -1131,7 +1131,7 @@ export function patchConfig(config, strict = true) {
 			full: "SW5E.Item.Property.Ritual",
 			type: "Boolean",
 			abbreviation: "SW5E.RitualAbbr",
-			icon: "systems/sw5e/icons/svg/items/power.svg",
+			icon: "systems/dnd5e/icons/svg/items/magical.svg",
 			isTag: true
 		},
 		somatic: {
@@ -1657,19 +1657,20 @@ export function patchConfig(config, strict = true) {
 		...config.damageTypes,
 		energy: {
 			label: "SW5E.DamageEnergy",
-			icon: "systems/sw5e/icons/svg/damage/energy.svg",
+			icon: "systems/dnd5e/icons/svg/damage/radiant.svg",
 			// reference: "", // TODO
 			color: new Color(0x800080),
 		},
 		ion: {
 			label: "SW5E.DamageIon",
-			icon: "systems/sw5e/icons/svg/damage/ion.svg",
+			// Note: In the past we used lightning again but I'd rather not uses the same icon and slashing is unused
+			icon: "systems/dnd5e/icons/svg/damage/slashing.svg",
 			// reference: "", // TODO
 			color: new Color(0x1E90FF)
 		},
 		kinetic: {
 			label: "SW5E.DamageKinetic",
-			icon: "systems/sw5e/icons/svg/damage/kinetic.svg",
+			icon: "systems/dnd5e/icons/svg/damage/bludgeoning.svg",
 			// reference: "", // TODO
 			color: new Color(0x8B0000)
 		}
@@ -2077,7 +2078,7 @@ export function patchConfig(config, strict = true) {
 				title: "SW5E.ShieldDamImm",
 				localization: "SW5E.TraitSDIPlural"
 			},
-			icon: "systems/sw5e/icons/svg/trait-damage-immunities.svg",
+			icon: "system/dnd5e/icons/svg/trait-damage-immunities.svg",
 			configKey: "damageTypes"
 		},
 		sdr: {
@@ -2085,7 +2086,7 @@ export function patchConfig(config, strict = true) {
 				title: "SW5E.ShieldDamRes",
 				localization: "SW5E.TraitSDRPlural"
 			},
-			icon: "systems/sw5e/icons/svg/trait-damage-resistances.svg",
+			icon: "system/dnd5e/icons/svg/trait-damage-resistances.svg",
 			configKey: "damageTypes"
 		},
 		sdv: {
@@ -2093,7 +2094,7 @@ export function patchConfig(config, strict = true) {
 				title: "SW5E.ShieldDamVuln",
 				localization: "SW5E.TraitSDVPlural"
 			},
-			icon: "systems/sw5e/icons/svg/trait-damage-vulnerabilities.svg",
+			icon: "system/dnd5e/icons/svg/trait-damage-vulnerabilities.svg",
 			configKey: "damageTypes"
 		},
 	};
