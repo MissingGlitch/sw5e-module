@@ -1664,7 +1664,7 @@ export function patchConfig(config, strict = true) {
 		ion: {
 			label: "SW5E.DamageIon",
 			// TODO: Create new unique svg for Ion as this is shared with lightning (or use unused icon like slashing)
-			// Though color is changed the way they svg is currently the color is sometimes overridden
+			// Though color is changed, the way the dnd5e system uses it, it sometimes overrites the color
 			icon: "systems/dnd5e/icons/svg/damage/lightning.svg",
 			// reference: "", // TODO
 			color: new Color(0x1E90FF)
