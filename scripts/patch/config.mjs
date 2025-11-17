@@ -1663,8 +1663,8 @@ export function patchConfig(config, strict = true) {
 		},
 		ion: {
 			label: "SW5E.DamageIon",
-			// Note: In the past we used lightning again but I'd rather not uses the same icon and slashing is unused
-			icon: "systems/dnd5e/icons/svg/damage/slashing.svg",
+			// TODO: create new unique svg as this is shared with lightning (or use unused icon like slashing)
+			icon: "systems/dnd5e/icons/svg/damage/lightning.svg",
 			// reference: "", // TODO
 			color: new Color(0x1E90FF)
 		},
