@@ -2083,7 +2083,7 @@ export function patchConfig(config, strict = true) {
 				title: "SW5E.ShieldDamImm",
 				localization: "SW5E.TraitSDIPlural"
 			},
-			icon: "system/dnd5e/icons/svg/trait-damage-immunities.svg",
+			icon: config.traits.di.icon,
 			configKey: "damageTypes"
 		},
 		sdr: {
@@ -2091,7 +2091,7 @@ export function patchConfig(config, strict = true) {
 				title: "SW5E.ShieldDamRes",
 				localization: "SW5E.TraitSDRPlural"
 			},
-			icon: "system/dnd5e/icons/svg/trait-damage-resistances.svg",
+			icon: config.traits.dr.icon,
 			configKey: "damageTypes"
 		},
 		sdv: {
@@ -2099,7 +2099,7 @@ export function patchConfig(config, strict = true) {
 				title: "SW5E.ShieldDamVuln",
 				localization: "SW5E.TraitSDVPlural"
 			},
-			icon: "system/dnd5e/icons/svg/trait-damage-vulnerabilities.svg",
+			icon: config.traits.dv.icon,
 			configKey: "damageTypes"
 		},
 	};
