@@ -663,11 +663,8 @@ export function patchConfig(config, strict = true) {
 	// Properties
 	// Preserve some useful itemProperties elements
 	let concentration_icon = config.itemProperties.concentration.icon;
-	console.warn(concentration_icon);
 	let enhanced_icon = config.itemProperties.mgc.icon;
-	console.warn(enhanced_icon);
 	let ritual_icon = config.itemProperties.ritual.icon;
-	console.warn(ritual_icon);
 
 	if (strict) config.itemProperties = {};
 	config.itemProperties = {
