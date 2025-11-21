@@ -455,8 +455,9 @@ function showPowercastingBar() {
 				const tempmax = castData.points.tempmax ?? 0;
 				const templateData = {
 					'castType': castType,
+					'castTypeCapitalize': castType.capitalize(),
 					'pointsLabel': game.i18n.localize(`SW5E.Powercasting.${castType.capitalize()}.Point.Label`),
-					'isEditable': app.editable,
+					'editable': app.editable,
 					'value': value,
 					'temp': temp,
 					'max': max,
@@ -469,7 +470,7 @@ function showPowercastingBar() {
 
 				let container = $('<div class="meter-group"></div>');
 
-				const templateFile = "modules/sw5e/templates/powercasting-sheet-tracker.hbs";
+				const templateFile = "modules/sw5e/templates/actors/character-sidebar-powercasting.hbs";
 				const renderedHtml = await foundry.applications.handlebars.renderTemplate(templateFile, templateData);
 
 				container.append(renderedHtml);
@@ -480,8 +481,13 @@ function showPowercastingBar() {
 					$(sidebarClasses, html).prepend(container);
 				}
 
-				//				$(hpHTML).after(castingHTMLMeter);
-				//				const statsHTML = $(hpHTML.parentNode);
+				$(`.config-button.${castType}Points`).off('click').on('click', function (event) {
+					event.preventDefault();
+					event.stopPropagation();
+
+					let config = new ActorCastPointsConfig({ document: powerCasting[castType] });
+					config?.render(true);
+				});
 
 				// Editable Only Listeners
 				//				if (app.isEditable) {

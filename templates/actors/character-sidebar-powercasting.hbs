@@ -1,10 +1,11 @@
 <div class="label roboto-condensed-upper">
     <span>{{pointsLabel}}</span>
-    {{#if isEditable}}
-    <a class="config-button" data-action="hitPoints" data-tooltip="DND5E.HitPointsConfig" aria-label="{{ localize "
-        DND5E.HitPointsConfig" }}">
-        <i class="fas fa-cog"></i>
-    </a>
+    {{#if editable}}
+    <button type="button" class="config-button unbutton" data-action="showConfiguration"
+        data-config="{{castType}}Points" data-tooltip="SW5E.{{castTypeCapitalize}}Config" aria-label="{{localize "
+        SW5E.{{castTypeCapitalize}}Config"}}">
+        <i class="fas fa-cog" inert></i>
+    </button>
     {{/if}}
 </div>
 <div class="meter sectioned {{castType}}-points">

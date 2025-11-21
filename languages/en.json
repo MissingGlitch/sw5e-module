@@ -161,7 +161,6 @@
 	"DND5E.AlignmentTN": "Balanced Neutral",
 	"DND5E.ConsumableAmmoCrossbowBolt": "Bolt",
 	"DND5E.DamageThunder": "Sonic",
-
 	"SW5E.EquipmentFocusGenerator": "Focus Generator",
 	"SW5E.EquipmentStarshipArmor": "Starship Armor",
 	"SW5E.EquipmentWristpad": "Wristpad",
@@ -247,6 +246,7 @@
 			"Venture": "Venture"
 		}
 	},
+	"SW5E.ForceConfig": "Configure Force Points",
 	"SW5E.FreeLearn": "Free Learn",
 	"DND5E.ITEM.Property.Magical": "Enhanced",
 	"SW5E.Item": {
@@ -888,6 +888,7 @@
 			"Identifier": "'Superiority' scale identifier is being overwritten by Superiority data."
 		}
 	},
+	"SW5E.TechConfig": "Configure Tech Points",
 	"SW5E.ToolSpecialistKit": "Specialist's Kit",
 	"SW5E.TraitSDIPlural.one": "Shield Damage Immunity",
 	"SW5E.TraitSDIPlural.other": "Shield Damage Immunities",
@@ -959,10 +960,8 @@
 	"SW5E.WeaponSimpleBlasterProficiency": "Simple Blasters",
 	"SW5E.WeaponSimpleLightweaponProficiency": "Simple Lightweapons",
 	"SW5E.WeaponSimpleVibroweaponProficiency": "Simple Vibroweapons",
-
 	"MIGRATION.sw5eBegin": "Applying SW5E Module Migration for version {version}. Please be patient and do not close your game or shut down your server.",
 	"MIGRATION.sw5eComplete": "SW5E Module Migration to version {version} completed!",
 	"MIGRATION.sw5eVersionTooOldWarning": "Your sw5e module data is from too old a Foundry version and cannot be reliably migrated to the latest version. The process will be attempted, but errors may occur",
-
 	"MODULE.hello": "hello"
 }
