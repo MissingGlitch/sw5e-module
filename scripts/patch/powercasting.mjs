@@ -204,7 +204,7 @@ function showPowercastingStats() {
 
 function patchItemSheet() {
 	Hooks.on("renderItemSheet5e", (app, html, data) => {
-		html.find(`select[name|='system.spellcasting.progression']`).each((idx, el) => {
+		html.querySelectorAll(`select[name|='system.spellcasting.progression']`).forEach((el, idx) => {
 			const root = el.parentNode.parentNode;
 			for (const castType of ["Tech", "Force"]) {
 				const selectedValue = app.item.system.spellcasting[`${castType.toLowerCase()}Progression`];

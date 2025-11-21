@@ -463,6 +463,19 @@ export function patchConfig(config, strict = true) {
 		valahorn: "Compendium.sw5e.musicalinstruments.Item.sNnvwOZrUp5xJuHe",
 		xantha: "Compendium.sw5e.musicalinstruments.Item.WVSGXxzBoTUoPvi9",
 	};
+	for (const id in config.toolIds) {
+		let toolAbility = "int";
+		const uuid = config.toolIds[id];
+
+		if (uuid.includes(".gamingsets.") || uuid.includes(".musicalinstruments.")) {
+			toolAbility = "cha";
+		}
+
+		config.tools[id] = {
+			ability: toolAbility,
+			id: uuid
+		}
+	}
 	// Ability Consumption
 	config.abilityConsumptionTypes.powerDice = "SW5E.PowerDice";
 	config.abilityConsumptionTypes.shieldDice = "SW5E.ShieldDice";
@@ -661,6 +674,11 @@ export function patchConfig(config, strict = true) {
 		preLocalize(`featureTypes.${key}.subtypes`, { sort: true });
 	}
 	// Properties
+	// Preserve some useful itemProperties elements
+	let concentration_icon = config.itemProperties.concentration.icon;
+	let enhanced_icon = config.itemProperties.mgc.icon;
+	let ritual_icon = config.itemProperties.ritual.icon;
+
 	if (strict) config.itemProperties = {};
 	config.itemProperties = {
 		...config.itemProperties,
@@ -1099,9 +1117,9 @@ export function patchConfig(config, strict = true) {
 			isStarship: true
 		},
 		concentration: {
-			label: "DND5E.Item.Property.Concentration",
+			label: "SW5E.Item.Property.Concentration",
 			abbreviation: "DND5E.ConcentrationAbbr",
-			icon: "systems/dnd5e/icons/svg/statuses/concentrating.svg",
+			icon: concentration_icon,
 			reference: "Compendium.dnd5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.ow58p27ctAnr4VPH",
 			isTag: true
 		},
@@ -1123,7 +1141,7 @@ export function patchConfig(config, strict = true) {
 			full: "SW5E.Item.Property.EnhancedFull",
 			type: "Boolean",
 			reference: "SW5E.Item.Property.EnhancedDesc",
-			icon: "systems/sw5e/icons/svg/properties/enhanced.svg",
+			icon: enhanced_icon,
 			isPhysical: true
 		},
 		ritual: {
@@ -1131,7 +1149,7 @@ export function patchConfig(config, strict = true) {
 			full: "SW5E.Item.Property.Ritual",
 			type: "Boolean",
 			abbreviation: "SW5E.RitualAbbr",
-			icon: "systems/sw5e/icons/svg/items/power.svg",
+			icon: ritual_icon,
 			isTag: true
 		},
 		somatic: {
@@ -1645,35 +1663,35 @@ export function patchConfig(config, strict = true) {
 		conversion: 1
 	};
 	// Damage
-	if (strict) {
-		delete config.damageTypes.bludgeoning;
-		delete config.damageTypes.slashing;
-		delete config.damageTypes.piercing;
-		delete config.damageTypes.radiant;
-	}
 	// config.damageTypes.force.reference = ""; // TODO
 	// config.damageTypes.thunder.reference = ""; // TODO
 	config.damageTypes = {
 		...config.damageTypes,
 		energy: {
 			label: "SW5E.DamageEnergy",
-			icon: "systems/sw5e/icons/svg/damage/energy.svg",
+			icon: config.damageTypes.radiant.icon,
 			// reference: "", // TODO
 			color: new Color(0x800080),
 		},
 		ion: {
 			label: "SW5E.DamageIon",
-			icon: "systems/sw5e/icons/svg/damage/ion.svg",
+			icon: "modules/sw5e/icons/svg/damage/ion.svg",
 			// reference: "", // TODO
 			color: new Color(0x1E90FF)
 		},
 		kinetic: {
 			label: "SW5E.DamageKinetic",
-			icon: "systems/sw5e/icons/svg/damage/kinetic.svg",
+			icon: config.damageTypes.bludgeoning.icon,
 			// reference: "", // TODO
 			color: new Color(0x8B0000)
 		}
 	};
+	if (strict) {
+		delete config.damageTypes.bludgeoning;
+		delete config.damageTypes.slashing;
+		delete config.damageTypes.piercing;
+		delete config.damageTypes.radiant;
+	}
 	// Powercasting
 	config.spellPreparationModes.powerCasting = {
 		label: "SW5E.Powercasting.Label",
@@ -1683,7 +1701,7 @@ export function patchConfig(config, strict = true) {
 	config.powerCasting = {
 		force: {
 			label: "SW5E.Powercasting.Force.Label",
-			img: "systems/dnd5e/icons/power-tiers/{id}.webp",
+			img: config.spellcasting.spell.img,
 			attr: ["wis", "cha"],
 			focus: {
 				label: "SW5E.Powercasting.Force.Focus",
@@ -1744,7 +1762,7 @@ export function patchConfig(config, strict = true) {
 		},
 		tech: {
 			label: "SW5E.Powercasting.Tech.Label",
-			img: "systems/sw5e/icons/power-tiers/{id}.webp",
+			img: config.spellcasting.spell.img,
 			attr: ["int"],
 			focus: {
 				label: "SW5E.Powercasting.Tech.Focus",
@@ -1810,7 +1828,7 @@ export function patchConfig(config, strict = true) {
 	// Superiority
 	config.superiority = {
 		label: "SW5E.Superiority.Label",
-		img: "systems/dnd5e/icons/power-tiers/{id}.webp",
+		img: config.spellcasting.spell.img,
 		// focus: {
 		// 	label: "SW5E.Superiority.Focus",
 		// 	id: "superiorityfocus",
@@ -1899,24 +1917,23 @@ export function patchConfig(config, strict = true) {
 		...config.conditionTypes,
 		corroded: {
 			name: "SW5E.ConCorroded",
-			img: "systems/sw5e/icons/svg/statuses/corroded.svg"
-			// reference: "" // TODO
+			img: "modules/sw5e/icons/svg/conditions/corroded.svg",
+			reference: "Compendium.sw5e.conditions.JournalEntry.eyo6JvadhVCWr4xD.JournalEntryPage.WZcSCaBuYZjNJ4LG"
 		},
 		ignited: {
 			name: "SW5E.ConIgnited",
-			img: "systems/sw5e/icons/svg/statuses/ignited.svg"
-			// reference: "" // TODO
+			img: config.conditionTypes.burning.img,
+			reference: "Compendium.sw5e.conditions.JournalEntry.SqRuG6FvP1Lutzvq.JournalEntryPage.CduLkVFKbfzSVEq8"
 		},
 		shocked: {
 			name: "SW5E.ConShocked",
-			img: "systems/sw5e/icons/svg/statuses/shocked.svg",
+			img: "modules/sw5e/icons/svg/conditions/shocked.svg",
 			reference: "Compendium.sw5e.conditions.JournalEntry.HBSJojgAGu9Gsctd.JournalEntryPage.0000000000000000"
-			// reference: "" // TODO
 		},
 		slowed: {
 			name: "SW5E.ConSlowed",
-			img: "systems/sw5e/icons/svg/statuses/slowed.svg",
-			// reference: "", // TODO
+			img: "modules/sw5e/icons/svg/conditions/slowed.svg",
+			reference: "Compendium.sw5e.conditions.JournalEntry.ZhAPlYd3gQ2KgbzV.JournalEntryPage.GTgBAVw76eIKJGEL",
 			levels: 4,
 			speedReduction: [
 				{
@@ -1939,8 +1956,8 @@ export function patchConfig(config, strict = true) {
 		},
 		weakened: {
 			name: "SW5E.ConWeakened",
-			img: "systems/sw5e/icons/svg/statuses/weakened.svg"
-			// reference: "" // TODO
+			img: "modules/sw5e/icons/svg/conditions/weakened.svg",
+			reference: "Compendium.sw5e.conditions.JournalEntry.ffDhL5tDJ8lD07uN.JournalEntryPage.xGHbrLsJf1B5Gmtd"
 		}
 	};
 	config.conditionEffects = {
@@ -2078,7 +2095,7 @@ export function patchConfig(config, strict = true) {
 				title: "SW5E.ShieldDamImm",
 				localization: "SW5E.TraitSDIPlural"
 			},
-			icon: "systems/sw5e/icons/svg/trait-damage-immunities.svg",
+			icon: config.traits.di.icon,
 			configKey: "damageTypes"
 		},
 		sdr: {
@@ -2086,7 +2103,7 @@ export function patchConfig(config, strict = true) {
 				title: "SW5E.ShieldDamRes",
 				localization: "SW5E.TraitSDRPlural"
 			},
-			icon: "systems/sw5e/icons/svg/trait-damage-resistances.svg",
+			icon: config.traits.dr.icon,
 			configKey: "damageTypes"
 		},
 		sdv: {
@@ -2094,7 +2111,7 @@ export function patchConfig(config, strict = true) {
 				title: "SW5E.ShieldDamVuln",
 				localization: "SW5E.TraitSDVPlural"
 			},
-			icon: "systems/sw5e/icons/svg/trait-damage-vulnerabilities.svg",
+			icon: config.traits.dv.icon,
 			configKey: "damageTypes"
 		},
 	};
