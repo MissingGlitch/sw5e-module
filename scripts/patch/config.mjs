@@ -1513,6 +1513,7 @@ export function patchConfig(config, strict = true) {
 			label: "SW5E.Item.Property.WeightlessContents"
 		}
 	};
+	preLocalize("itemProperties", { key: "label" });
 	if (strict) config.validProperties = {};
 	config.validProperties = {
 		...config.validProperties,
